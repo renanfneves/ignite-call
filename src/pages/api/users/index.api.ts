@@ -7,7 +7,9 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   if (req.method !== 'POST') {
-    return res.status(405).end()
+    return res
+      .status(405)
+      .json({ message: `method must be POST instead of ${req.method}` })
   }
 
   const { name, username } = req.body
